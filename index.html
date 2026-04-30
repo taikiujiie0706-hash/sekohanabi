@@ -321,7 +321,8 @@ function drawParticles(){
     ctx.save();ctx.globalAlpha=a;
     ctx.fillStyle=p.type==='spark'?p.col:'#ff5511';
     ctx.shadowColor=p.type==='spark'?p.col:'#ff3300';ctx.shadowBlur=4;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.type==='spark'?p.size*(p.life/p.maxLife):p.size,0,Math.PI*2);ctx.fill();
+    const r=p.type==='spark'?p.size*(p.life/p.maxLife):p.size;if(r<=0)continue;
+    ctx.beginPath();ctx.arc(p.x,p.y,Math.max(0.1,r),0,Math.PI*2);ctx.fill();
     ctx.restore();
   }
 }
